@@ -13,12 +13,15 @@ export default function Login(){
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(name==="user" && password==="password"){
+           
             setLogged(true);
             setMessage("");
             
         }
         else{
             setMessage("Invalid username or password")
+            setName("");
+            setPassword("");
         }
     }
 
@@ -26,22 +29,22 @@ export default function Login(){
 
         <>
             <h1> Login Page</h1>
-            {logged? <p> Welcome user!</p>:
-            <form>
+            {logged? <p> Welcome, user</p>:
+            <form onSubmit={handleSubmit}>
             {message} <br/>
         <label>Username:</label>
-        <input type="text" placeholder="username"
+        <input type="text" placeholder="username" value={name}
         onChange={(e)=>setName(e.target.value)}
         required
         ></input>
         <br/>
         <label>Password:</label>
-        <input type="password" placeholder="password"
+        <input type="password" placeholder="password" value={password}
         onChange={(e)=>setPassword(e.target.value)}
         required
         ></input>
         <br/>
-        <button onClick={handleSubmit}>Submit</button>
+        <button type="submit" >Submit</button>
             
       </form>
             }
